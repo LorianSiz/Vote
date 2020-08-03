@@ -1,0 +1,35 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+	  <h2>Vote {{voteId}}</h2>
+    </div>
+    <div class="panel-body">
+        <div *ngIf="nouveauVote">
+            <p>Merci de votre participation!</p>
+        </div>
+        <div *ngIf="enCours">
+            <p>Le vote est en cours, les résultats arriveront bientôt.</p>
+        </div>
+        <div *ngIf="!enCours">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <h3>Profil votant:</h3>
+                    <table class="table table-striped">
+						<tr *ngFor="let questP of questionsProfil; let idP = index">
+                            <p>{{questP.contenu}}:
+                            {{reponsesProfil[idP]}}</p>
+						</tr>
+					</table>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <h3>Résultat du vote:</h3>
+                    <table class="table table-striped">
+						<tr *ngFor="let questV of questionsVote; let idV = index">
+                            <p>{{questV.contenu}}:
+                            {{reponsesVote[idV]}}</p>
+						</tr>
+					</table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

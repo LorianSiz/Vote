@@ -16,7 +16,11 @@
             <column name="type" type="VARCHAR(255)">
             	<constraints nullable="false"/>
             </column>
+            <column name="formulaire_id" type="INT">
+            	<constraints nullable="false"/>
+            </column>
         </createTable>
+        
         <rollback>
             <dropTable tableName="questions"/>
         </rollback>

@@ -1,7 +1,5 @@
 package com.cronos.vote.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,28 +11,24 @@ import javax.persistence.Table;
 @Table(name = "formulaires")
 public class Formulaire {
 
-	private int id;
-	private String nom;
-	private List<Question> questions;
-
-	public Formulaire(int id, String nom, List<Question> questions) {
-		super();
-		this.id = id;
-		this.nom = nom;
-		this.questions = questions;
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public int getId() {
+	private long id;
+
+	@Column(name = "nom", nullable = false)
+	private String nom;
+
+	public Formulaire() {
+	}
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	@Column(name = "nom", nullable = false)
 	public String getNom() {
 		return nom;
 	}
@@ -43,18 +37,30 @@ public class Formulaire {
 		this.nom = nom;
 	}
 
-	@Column(name = "questions", nullable = false)
-	public List<Question> getQuestions() {
-		return questions;
-	}
-
-	public void setQuestions(List<Question> questions) {
-		this.questions = questions;
+	@Override
+	public String toString() {
+		return "Formulaire [id=" + id + ", nom=" + nom + "]";
 	}
 
 	@Override
-	public String toString() {
-		return "Formulaire [id=" + id + ", nom=" + nom + ", questions=" + questions + "]";
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null || getClass() != obj.getClass()) {
+			return false;
+		}
+		Formulaire form = (Formulaire) obj;
+		if (this.id == form.id)
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
 	}
 
 }

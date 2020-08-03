@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet author="admin" id="9">
+    
+    	<addForeignKeyConstraint baseColumnNames="formulaire_id"
+                             baseTableName="questions"
+                             constraintName="fk_questions_formulaires_id"
+                             referencedColumnNames="id"
+                             referencedTableName="formulaires"/>
+    
+    	<addForeignKeyConstraint baseColumnNames="vote_id"
+                             baseTableName="votes_votants"
+                             constraintName="fk_votes_votants_votes_id"
+                             referencedColumnNames="id"
+                             referencedTableName="votes"/> 
+                             
+    	<addForeignKeyConstraint baseColumnNames="user_id"
+                             baseTableName="votes_votants"
+                             constraintName="fk_votes_votants_users_id"
+                             referencedColumnNames="id"
+                             referencedTableName="users"/> 
+    
+    	<addForeignKeyConstraint baseColumnNames="question_id"
+                             baseTableName="reponses"
+                             constraintName="fk_reponses_questions_id"
+                             referencedColumnNames="id"
+                             referencedTableName="questions"/>
+                             
+        <addForeignKeyConstraint baseColumnNames="question_id"
+                             baseTableName="reponses_question"
+                             constraintName="fk_reponses_question_questions_question_id"
+                             referencedColumnNames="id"
+                             referencedTableName="questions"/>   
+                             
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                             baseTableName="reponses"
+                             constraintName="fk_reponses_users_id"
+                             referencedColumnNames="id"
+                             referencedTableName="users"/>       
+        
+        <addForeignKeyConstraint baseColumnNames="vote_form_id"
+                             baseTableName="votes"
+                             constraintName="fk_votes_formulaires_vote_form_id"
+                             referencedColumnNames="id"
+                             referencedTableName="formulaires"/>
+        
+        <addForeignKeyConstraint baseColumnNames="profil_form_id"
+                             baseTableName="votes"
+                             constraintName="fk_votes_formulaires_profil_form_id"
+                             referencedColumnNames="id"
+                             referencedTableName="formulaires"/> 
+                             
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                             baseTableName="votes"
+                             constraintName="fk_votes_users_id"
+                             referencedColumnNames="id"
+                             referencedTableName="users"/>                   
+        
+        
+        <rollback>
+            <dropTable tableName="formulaires"/>
+            <dropTable tableName="questions"/>
+            <dropTable tableName="votes"/>
+            <dropTable tableName="users"/>
+            <dropTable tableName="reponses"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

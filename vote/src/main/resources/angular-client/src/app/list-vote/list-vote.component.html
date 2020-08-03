@@ -1,0 +1,25 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Liste des votes</h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Vote</th>
+          <th>Date</th>
+		  <th>Description</th>
+		  <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vote of votes">
+          <td>{{vote.id}}</td>
+          <td>{{vote.dateFin}}</td>
+		  <td>{{vote.description}}</td>
+          <td><button (click)="Voir(vote.id)" class="btn btn-info">Voir</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

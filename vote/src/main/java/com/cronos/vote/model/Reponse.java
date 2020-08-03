@@ -5,34 +5,41 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "reponses")
 public class Reponse {
 
-	private int id;
-	private String contenu;
-	private Votant votant;
-
-	public Reponse(int id, String contenu, Votant votant) {
-		super();
-		this.id = id;
-		this.contenu = contenu;
-		this.votant = votant;
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public int getId() {
+	private long id;
+
+	@Column(name = "contenu", nullable = false)
+	private String contenu;
+
+	@OneToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+
+	@ManyToOne
+	@JoinColumn(name = "question_id")
+	private Question question;
+
+	public Reponse() {
+	}
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	@Column(name = "contenu", nullable = false)
 	public String getContenu() {
 		return contenu;
 	}
@@ -41,18 +48,25 @@ public class Reponse {
 		this.contenu = contenu;
 	}
 
-	@Column(name = "votant", nullable = false)
-	public Votant getVotant() {
-		return votant;
+	public User getUser() {
+		return user;
 	}
 
-	public void setVotant(Votant votant) {
-		this.votant = votant;
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Question getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(Question question) {
+		this.question = question;
 	}
 
 	@Override
 	public String toString() {
-		return "Reponse [id=" + id + ", contenu=" + contenu + ", votant=" + votant + "]";
+		return "Reponse [id=" + id + ", contenu=" + contenu + ", user=" + user + "]";
 	}
 
 }

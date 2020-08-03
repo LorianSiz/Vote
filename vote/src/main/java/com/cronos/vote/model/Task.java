@@ -1,29 +1,29 @@
 package com.cronos.vote.model;
 
-import java.io.Serializable;
+public class Task {
 
-public class Task implements Serializable {
-
-	private String id;
+	private long id;
+	private String idActiviti;
 	private String name;
 	private String description;
 
 	public Task() {
 	}
 
-	public Task(String id, String name, String description) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-	}
-
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getIdActiviti() {
+		return idActiviti;
+	}
+
+	public void setIdActiviti(String idActiviti) {
+		this.idActiviti = idActiviti;
 	}
 
 	public String getName() {

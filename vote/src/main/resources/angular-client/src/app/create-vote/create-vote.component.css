@@ -1,0 +1,6 @@
+.dropdown1 {list-style: none; background: #333333; padding: 10px; display: inline-block; color: #e6e6e6; font-weight:bold;}
+.dropdown2 {list-style: none; background: #e6e6e6; padding: 10px; display: inline-block; color: #333333; font-weight:bold;}
+.dropdown .btn:hover {background: cyan; color:#000;}
+.dropdown .btn:active {background: cyan; color:#000;}
+.dropdown .btn:focus {background: cyan; color:#000;}
+.dropdown-menu .dropdown-item {display: inline-block; width: 100%; padding: 10px 5px;}

@@ -1,0 +1,82 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+	  <h2>Vote {{voteId}}</h2>
+	</div>
+	<ng-container *ngIf="formCreateReponse">
+		<form [formGroup]="formCreateReponse" (ngSubmit)="onSubmit()">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+					<table class="table table-striped">
+						<tr *ngFor="let questP of questionsProfil; let idP = index" formArrayName="reponsesProfil">
+							<div [formGroupName]="idP">
+								<td>{{questP.contenu}}</td>
+								<td>
+									<div *ngIf="CondSC(questP.type)">
+										<div class="radio" *ngFor="let repP of questP.reponses; let idRepP = index">
+											<label><input type="radio" formControlName="repVotant" value={{repP}}> {{repP}}</label>
+										</div>
+										<div class="text-danger" *ngIf="testReponseProfil(idP)">
+											Réponse nécessaire
+										</div>
+									</div>
+									<div *ngIf="CondMC(questP.type)">
+										<div class="checkbox" *ngFor="let repP of questP.reponses; let idRepP = index">
+											<label><input type="checkbox" formControlName="{{idRepP}}"> {{repP}}</label>
+										</div>
+									</div>
+									<div *ngIf="CondNIV(questP.type)">
+										<div class="slidecontainer">
+											{{min(questP)}}
+											<input type="range" min="{{min(questP)}}" max="{{max(questP)}}" value="{{jauge[questP.id]}}" class="slider" (input)="valueChanger($event.target.value, questP.id)" [(ngModel)]="jauge[questP.id]" formControlName="repVotant">
+											{{max(questP)}}
+										</div>
+										{{jauge[questP.id]}}
+										<div class="text-danger" *ngIf="testReponseProfil(idP)">
+											Réponse nécessaire
+										</div>
+									</div>
+								</td>
+							</div>
+						</tr>
+					</table>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+					<table class="table table-striped">
+						<tr *ngFor="let questV of questionsVote; let idV = index" formArrayName="reponsesVote">
+							<div [formGroupName]="idV">
+								<td>{{questV.contenu}}</td>
+								<td>
+									<div *ngIf="CondSC(questV.type)">
+										<div class="radio" *ngFor="let repV of questV.reponses; let idRepV = index">
+											<label><input type="radio" formControlName="repVotant" value={{repV}}> {{repV}}</label>
+										</div>
+										<div class="text-danger" *ngIf="testReponseVote(idV)">
+											Réponse nécessaire
+										</div>
+									</div>
+									<div *ngIf="CondMC(questV.type)">
+										<div class="checkbox" *ngFor="let repV of questV.reponses; let idRepV = index">
+											<label><input type="checkbox" formControlName="{{idRepV}}"> {{repV}}</label>
+										</div>
+									</div>
+									<div *ngIf="CondNIV(questV.type)">
+										<div class="slidecontainer">
+											{{min(questV)}}
+											<input type="range" min="{{min(questV)}}" max="{{max(questV)}}" value="{{jauge[questV.id]}}" class="slider" (input)="valueChanger($event.target.value, questV.id)" [(ngModel)]="jauge[questV.id]" formControlName="repVotant">
+											{{max(questV)}}
+										</div>
+										{{jauge[questV.id]}}
+										<div class="text-danger" *ngIf="testReponseVote(idV)">
+											Réponse nécessaire
+										</div>
+									</div>
+								</td>
+							</div>
+						</tr>
+					</table>
+				</div>
+				<input type="submit" class="btn btn-primary" value="Voter"/>
+			</div>
+		  </form>
+	</ng-container>
+</div>

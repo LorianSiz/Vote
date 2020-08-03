@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet author="admin" id="10">
+    
+    	<insert tableName="formulaires">
+		  <column name="id" valueNumeric="1"/>
+		  <column name="nom" value="form profil test"/>
+		</insert>
+		
+		<insert tableName="formulaires">
+		  <column name="id" valueNumeric="2"/>
+		  <column name="nom" value="form vote test"/>
+		</insert>
+    
+        <insert tableName="questions">
+		  <column name="id" valueNumeric="1"/>
+		  <column name="contenu" value="age"/>
+		  <column name="type" value="JAUGE"/>
+		  <column name="formulaire_id" valueNumeric="1"/>
+		</insert>
+		
+		<insert tableName="questions">
+		  <column name="id" valueNumeric="2"/>
+		  <column name="contenu" value="Aimes-tu les glaces?"/>
+		  <column name="type" value="SIMPLECHOIX"/>
+		  <column name="formulaire_id" valueNumeric="2"/>
+		</insert>
+		
+		<insert tableName="questions">
+		  <column name="id" valueNumeric="3"/>
+		  <column name="contenu" value="Quels goûts?"/>
+		  <column name="type" value="MULTICHOIX"/>
+		  <column name="formulaire_id" valueNumeric="2"/>
+		</insert>
+		
+		<insert tableName="reponses_question">
+		  <column name="id" valueNumeric="1"/>
+		  <column name="reponse" value="chocolat"/>
+		  <column name="question_id" valueNumeric="3"/>
+		</insert>
+		
+		<insert tableName="reponses_question">
+		  <column name="id" valueNumeric="2"/>
+		  <column name="reponse" value="vanille"/>
+		  <column name="question_id" valueNumeric="3"/>
+		</insert>
+		
+		<insert tableName="reponses_question">
+		  <column name="id" valueNumeric="3"/>
+		  <column name="reponse" value="oui"/>
+		  <column name="question_id" valueNumeric="2"/>
+		</insert>
+		
+		<insert tableName="reponses_question">
+		  <column name="id" valueNumeric="4"/>
+		  <column name="reponse" value="non"/>
+		  <column name="question_id" valueNumeric="2"/>
+		</insert>
+		
+		<insert tableName="reponses_question">
+		  <column name="id" valueNumeric="5"/>
+		  <column name="reponse" value="15"/>
+		  <column name="question_id" valueNumeric="1"/>
+		</insert>
+		
+		<insert tableName="reponses_question">
+		  <column name="id" valueNumeric="6"/>
+		  <column name="reponse" value="90"/>
+		  <column name="question_id" valueNumeric="1"/>
+		</insert>
+		
+		<insert tableName="users">
+		  <column name="id" valueNumeric="1"/>
+		  <column name="pseudo" value="activiti-vote"/>
+		  <column name="password" value="$2a$10$4WnsGSoMvA0V5z4PK4RBhOKwnYmT6j6U0XoYV5dkyIVHzWYDbt7/C"/>
+		  <column name="role" value="CREATOR"/>
+		</insert>
+		
+		<insert tableName="users">
+		  <column name="id" valueNumeric="2"/>
+		  <column name="pseudo" value="test@test.fr"/>
+		  <column name="password" value="$2a$10$rz5s3wxsPwucFnNQbJQdfuqWHjOnX5LMvPy7CSx5zrgd.n1oUw186"/>
+		  <column name="role" value="USER"/>
+		</insert>
+		
+		<insert tableName="users">
+		  <column name="id" valueNumeric="3"/>
+		  <column name="pseudo" value="createurtest"/>
+		  <column name="password" value="$2a$10$PgEtdwbvZO4fAL9ItmfK5uU.vLAvHIUzXlqT.KZXfmW7xKMCbDime"/>
+		  <column name="role" value="CREATOR"/>
+		</insert>
+		
+		<insert tableName="votes">
+		  <column name="id" valueNumeric="1"/>
+		  <column name="date_fin" value="2000-05-04"/>
+		  <column name="disponible" value="1"/>
+		  <column name="process_id" value="1"/>
+		  <column name="description" value="vote test"/>
+		  <column name="profil_form_id" valueNumeric="1"/>
+		  <column name="vote_form_id" valueNumeric="2"/>
+		  <column name="user_id" valueNumeric="3"/>
+		</insert>
+		
+		<insert tableName="votes_votants">
+		  <column name="vote_id" value="1"/>
+		  <column name="user_id" value="2"/>
+		</insert>
+		
+		<insert tableName="reponses">
+		  <column name="id" valueNumeric="1"/>
+		  <column name="contenu" value="14"/>
+		  <column name="question_id" valueNumeric="1"/>
+		  <column name="user_id" valueNumeric="2"/>
+		</insert>
+		
+		<insert tableName="reponses">  
+		  <column name="id" valueNumeric="2"/>
+		  <column name="contenu" value="oui"/>
+		  <column name="question_id" valueNumeric="2"/>
+		  <column name="user_id" valueNumeric="2"/>
+		</insert>
+		
+		<insert tableName="reponses">  
+		  <column name="id" valueNumeric="3"/>
+		  <column name="contenu" value="vanille"/>
+		  <column name="question_id" valueNumeric="3"/>
+		  <column name="user_id" valueNumeric="2"/>
+		</insert>
+		
+		<insert tableName="reponses">  
+		  <column name="id" valueNumeric="4"/>
+		  <column name="contenu" value="chocolat"/>
+		  <column name="question_id" valueNumeric="3"/>
+		  <column name="user_id" valueNumeric="2"/>
+		</insert>
+		
+        <rollback>
+            <dropTable tableName="formulaires"/>
+            <dropTable tableName="questions"/>
+            <dropTable tableName="votes"/>
+            <dropTable tableName="users"/>
+            <dropTable tableName="reponses"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

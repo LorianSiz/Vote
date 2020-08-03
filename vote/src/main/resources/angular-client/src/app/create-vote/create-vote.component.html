@@ -1,0 +1,114 @@
+<div class="panel panel-primary">
+  <div class="panel panel-default">
+	<form [formGroup]="formCreateVote" (ngSubmit)="onSubmit()">
+		<div class="panel-body bg-dark text-light" formArrayName="descVoteForm">
+			<h2>Création du vote</h2>
+			<table class="table table-striped" [formGroupName]="0">
+				<td>
+					<input type="text" class="form-control d-inline p-2" aria-describedby="Description du vote" placeholder="Description du vote" formControlName="description">
+					<div class="text-danger" *ngIf="testDesc()">
+						Nom nécessaire
+					</div>
+				</td>
+				<td>
+					<input type="date" class="form-control d-inline p-2" aria-describedby="Date limite" placeholder="Date limite" formControlName="dateFin">
+					<div class="text-danger" *ngIf="testDateFin()">
+						Date limite nécessaire
+					</div>
+					<div class="text-danger" *ngIf="testDates()">
+						La date limite n'est pas bonne
+					</div>
+				</td>
+			</table>
+		</div>
+		<div class="panel-body bg-light text-dark" formArrayName="profilForm">
+			<h3>Critères du profile</h3>
+			<button (click)="AjoutLigneP()" class="btn btn-info" type="button">Ajouter une ligne</button>
+				<table class="table table-striped">
+					<tr *ngFor="let questP of ProfilFormData.controls; let idP = index">
+						<div [formGroupName]="idP">
+							<td>
+								<input type="text" class="form-control d-inline p-2" aria-describedby="Entrer une question" placeholder="Question" [id]="'contenu' + idP" formControlName="contenu">
+								<div class="text-danger" *ngIf="testContenu(questP)">
+									Question nécessaire
+							    </div>
+							</td>
+							<td>
+								<div class="form-group">
+									<select class="form-control" [id]="'type' + idP" formControlName="type">
+										<option>Jauge</option>
+										<option>Choix unique</option>
+										<option>Choix multiple</option>
+									</select>
+									<div class="text-danger" *ngIf="testType(questP)">
+										Type de réponse nécessaire
+									</div>
+								</div>
+							</td>
+							<td>
+								<input type="text" class="form-control" aria-describedby="Entrer des réponses" placeholder="Réponses" [id]="'reponses' + idP" formControlName="reponses">
+								<div class="text-danger" *ngIf="testReponse(questP)">
+									Deux réponses minimum nécessaires
+							    </div>
+							</td>
+							<td><button (click)="SupprP(idP)" class="btn btn-danger" type="button">Supprimer</button></td>
+						</div>
+					</tr>
+				</table>
+		</div>
+		<div class="panel-body bg-dark text-light" formArrayName="voteForm">
+			<h3>Questions du vote</h3>
+			<button (click)="AjoutLigneV()" class="btn btn-info" type="button">Ajouter une ligne</button>
+				<table class="table table-striped">
+					<tr *ngFor="let questV of VoteFormData.controls; let idV = index">
+						<div [formGroupName]="idV">
+							<td>
+								<input type="text" class="form-control d-inline p-2" aria-describedby="Entrer une question" placeholder="Question" [id]="'contenu' + idV" formControlName="contenu">
+								<div class="text-danger" *ngIf="testContenu(questV)">
+									Question nécessaire
+							    </div>
+							</td>
+							<td>
+								<div class="form-group">
+									<select class="form-control" [id]="'type' + idV" formControlName="type">
+										<option>Jauge</option>
+										<option>Choix unique</option>
+										<option>Choix multiple</option>
+									</select>
+									<div class="text-danger" *ngIf="testType(questV)">
+										Type de réponse nécessaire
+									</div>
+								</div>
+							</td>
+							<td>
+								<input type="text" class="form-control" aria-describedby="Entrer des réponses" placeholder="Réponses" [id]="'reponses' + idV" formControlName="reponses">
+								<div class="text-danger" *ngIf="testReponse(questV)">
+									Deux réponses minimum nécessaires
+							    </div>
+							</td>
+							<td><button (click)="SupprV(idV)" class="btn btn-danger" type="button">Supprimer</button></td>
+						</div>
+					</tr>
+				</table>
+		</div>
+		<div class="panel-body bg-light text-dark">
+			<h3>Votants</h3>
+			<button (click)="AjoutVotant()" class="btn btn-info" type="button">Ajouter un votant</button>
+				<table class="table table-striped">
+					<tr formArrayName="votantForm" *ngFor="let votant of VotantFormData.controls; let idVotant = index">
+					  <div [formGroupName]="idVotant">
+						<td>
+							<input type="email" class="form-control d-inline p-2" aria-describedby="Entrer un mail" placeholder="Mail" [id]="'mail' + idVotant" formControlName="mail" email>
+							<div class="text-danger" *ngIf="testMail(votant)">
+									Mail nécessaire
+							</div>
+						</td>
+						<td><button (click)="SupprVotant(idVotant)" class="btn btn-danger" type="button">Supprimer</button></td>
+					  </div>
+					</tr>
+				</table>
+				<input type="submit" class="btn btn-primary" value="Créer vote"/>
+		</div>
+	</form>
+  </div>
+</div>

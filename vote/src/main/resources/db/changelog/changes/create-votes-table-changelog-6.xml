@@ -16,16 +16,23 @@
             <column name="disponible" type="VARCHAR(255)">
             	<constraints nullable="false"/>
             </column>
-            <column name="votants" type="VARCHAR(255)">
+            <column name="process_id" type="VARCHAR(255)">
+            	<constraints nullable="true"/>
+            </column>
+            <column name="description" type="VARCHAR(255)">
             	<constraints nullable="false"/>
             </column>
-            <column name="profilForm" type="VARCHAR(255)">
+            <column name="profil_form_id" type="INT">
             	<constraints nullable="false"/>
             </column>
-            <column name="voteForm" type="VARCHAR(255)">
+            <column name="vote_form_id" type="INT">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="INT">
             	<constraints nullable="false"/>
             </column>
         </createTable>
+        
         <rollback>
             <dropTable tableName="votes"/>
         </rollback>

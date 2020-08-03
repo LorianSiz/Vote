@@ -1,0 +1,31 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Connexion</h2>
+  </div>
+  <div class="panel panel-default">
+	<form [formGroup]="formCreateUser" (ngSubmit)="onSubmit()">
+		<div class="panel-body bg-light text-dark">
+				<table class="table table-striped" [formGroupName]="0">
+					<tr>
+						<td>
+							<input type="text" class="form-control d-inline p-2" aria-describedby="Entrer un pseudo" placeholder="Pseudo" [id]="'pseudo'" id="pseudo" [(ngModel)]="pseudo" formControlName="pseudo">
+							<div class="text-danger" *ngIf="testPseudo()">
+									Pseudo nécessaire
+							</div>
+						</td>
+						<td>
+							<input type="password" class="form-control d-inline p-2" aria-describedby="Entrer un mot de passe" placeholder="Mot de passe" [id]="'mdp'" id="mdp" [(ngModel)]="mdp" formControlName="mdp">
+							<div class="text-danger" *ngIf="testMdp()">
+									Mot de passe nécessaire
+							</div>
+						</td>
+					</tr>
+				</table>
+				<div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
+          		<div class="alert alert-success" *ngIf='loginSuccess'>{{successMessage}}</div>
+				<input type="submit" class="btn btn-primary" value="Se connecter"/>
+		</div>
+	</form>
+  </div>
+</div>
+
