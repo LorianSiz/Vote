@@ -6,7 +6,7 @@ pipeline {
             steps {
                 echo 'Building..'
                 sh 'mvn -f vote/pom.xml clean install'
-                sh 'mvn build'
+                sh 'mvn package'
             }
         }
         stage('Test') {
