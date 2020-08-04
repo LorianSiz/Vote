@@ -16,9 +16,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sh '/opt/tomcat/controller/shutdown.sh autopartage@Ap45(90'
+                sh '/opt/tomcat/controller/shutdown.sh \"autopartage@Ap45(90\"'
                 sh 'scp /home/cronos/.m2/repository/com/cronos/vote/0.0.1-SNAPSHOT/vote-0.0.1-SNAPSHOT.war autopartage.cronos.lu:/opt/autopartage/webapps'
-                sh '/opt/tomcat/controller/startup.sh autopartage@Ap45(90'
+                sh '/opt/tomcat/controller/startup.sh \"autopartage@Ap45(90\"'
             }
         }
     }
