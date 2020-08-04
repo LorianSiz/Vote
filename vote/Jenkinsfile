@@ -5,8 +5,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                cd vote
-                sh mvn build
+                cd "vote"
+                sh "mvn build"
             }
         }
         stage('Test') {
