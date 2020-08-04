@@ -1,13 +1,12 @@
 pipeline {
     agent any
     
-    
-    
 	stages {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'mvn build'
+                cd vote
+                sh mvn build
             }
         }
         stage('Test') {
