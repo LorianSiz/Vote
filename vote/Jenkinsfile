@@ -18,7 +18,7 @@ pipeline {
                 echo 'Deploying....'
                 sh 'sudo /opt/tomcat/controller/shutdown.sh workflow'
                 sh 'sudo cp /home/cronos/.m2/repository/com/cronos/vote/0.0.1-SNAPSHOT/vote-0.0.1-SNAPSHOT.war /opt/workflow/webapps/'
-                sh 'sudo mv /opt/autopartage/webapps/vote-0.0.1-SNAPSHOT.war /opt/autopartage/webapps/ROOT.war'
+                sh 'sudo mv /opt/workflow/webapps/vote-0.0.1-SNAPSHOT.war /opt/workflow/webapps/ROOT.war'
                 sh 'sudo /opt/tomcat/controller/startup.sh workflow'
             }
         }
