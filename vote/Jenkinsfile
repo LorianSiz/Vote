@@ -16,10 +16,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sh '/opt/tomcat/controller/shutdown.sh workflow'
+                sh 'sudo /opt/tomcat/controller/shutdown.sh workflow'
                 sh 'cp /home/cronos/.m2/repository/com/cronos/vote/0.0.1-SNAPSHOT/vote-0.0.1-SNAPSHOT.war /opt/workflow/webapps/'
                 sh 'mv /opt/autopartage/webapps/vote-0.0.1-SNAPSHOT.war /opt/autopartage/webapps/ROOT.war'
-                sh '/opt/tomcat/controller/startup.sh workflow'
+                sh 'sudo /opt/tomcat/controller/startup.sh workflow'
             }
         }
     }
